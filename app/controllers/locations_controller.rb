@@ -12,8 +12,8 @@ class LocationsController < ApplicationController
   def show
     require 'flickraw'
 
-    FlickRaw.api_key = "420f3c8d48675ad2a67c191f7a126edf"
-    FlickRaw.shared_secret = "121932a6dd63cfea"
+    FlickRaw.api_key = ENV["EL_FLICKR_API"]
+    FlickRaw.shared_secret = ENV["EL_FLICKR_API_SECRET"]
 
     flickr = FlickRaw::Flickr.new
     info = flickr.photos.getInfo(:photo_id => @location.clue_flickr)
