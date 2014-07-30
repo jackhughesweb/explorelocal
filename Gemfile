@@ -46,3 +46,7 @@ end
 
 gem 'friendly_id'
 gem 'flickraw'
+
+group :production do
+    gem 'mysql2'
+end

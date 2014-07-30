@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate
 
   # GET /locations
   # GET /locations.json
@@ -78,5 +79,11 @@ class LocationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
       params.require(:location).permit(:latitude, :longitude, :name, :clue_flickr, :clue_wikipedia_link, :clue_wikipedia_text)
+    end
+
+    def authenticate
+      authenticate_or_request_with_http_basic do |username, password|
+        username == ENV["EL_USERNAME"] && password == ENV["EL_PASSWORD"]
+      end
     end
 end
