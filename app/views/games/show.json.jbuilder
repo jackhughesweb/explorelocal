@@ -1,0 +1,1 @@
+json.extract! @game, :id, :slug, :location1, :location2, :location3, :location4, :created_at, :updated_at

@@ -1,0 +1,122 @@
+// Place all the styles related to the Games controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+html, body {
+  height: 100%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.map-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar {
+  width: 20%;
+  height: 90%;
+  overflow-y: scroll;
+  word-wrap: break-word;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 0.5em;
+  article.card {
+    background-color: #ffffff;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+    box-shadow: 1px 2px 3px;
+    img {
+      max-width: 100%;
+      cursor: hand;
+      &.clue-flickr-image {
+        cursor: pointer;
+      }
+    }
+    .hidden {
+      display: none;
+    }
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    p {
+      margin-top: 0.5em;
+    }
+    .small {
+      font-size: 0.8em;
+    }
+    &.clickable {
+      cursor: pointer;
+      &:hover {
+        background-color: #eeeeee;
+      }
+    }
+    &.pinbutton {
+      display: none;
+      background-color: #188520;
+      color: #ffffff;
+      cursor: pointer;
+      &:hover {
+        background-color: #dddddd;
+      }
+    }
+  }
+}
+
+section.not-loading {
+  display: none;
+}
+
+.clue-icon-open {
+  display: none;
+}
+
+.lightbox {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: center;
+  display: none;
+  cursor: pointer;
+  img {
+    max-height: 90%;
+    max-width: 90%;
+  }
+}
+
+.lightbox-modal, .lightbox-modal-end {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+}
+
+.lightbox-modal-text, .lightbox-modal-end-text {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #ffffff;
+  height: 100%;
+  padding: 1em;
+  width: 40%;
+}
+
+.award {
+  display: none;
+}

@@ -1,0 +1,35 @@
+<h1>Listing games</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Slug</th>
+      <th>Location1</th>
+      <th>Location2</th>
+      <th>Location3</th>
+      <th>Location4</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= game.slug %></td>
+        <td><%= game.location1 %></td>
+        <td><%= game.location2 %></td>
+        <td><%= game.location3 %></td>
+        <td><%= game.location4 %></td>
+        <td><%= link_to 'Show', game %></td>
+        <td><%= link_to 'Edit', edit_game_path(game) %></td>
+        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Game', new_game_path %>

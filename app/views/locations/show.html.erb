@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Name:</strong>
+  <%= @location.name %>
+</p>
+
+<p>
   <strong>Latitude:</strong>
   <%= @location.latitude %>
 </p>
@@ -11,8 +16,20 @@
 </p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @location.name %>
+  <strong>Clue Flickr ID:</strong>
+  <%= @location.clue_flickr %>
+  <br>
+  <img src="<%= @location_flickr_url %>" class="flickr-show">
+</p>
+
+<p>
+  <strong>Clue Wikipedia Link:</strong>
+  <%= @location.clue_wikipedia_link %>
+</p>
+
+<p>
+  <strong>Clue Wikipedia Text:</strong>
+  <%= @location.clue_wikipedia_text %>
 </p>
 
 <%= link_to 'Edit', edit_location_path(@location) %> |

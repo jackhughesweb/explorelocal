@@ -1,0 +1,75 @@
+<div id="map-canvas" class="map-canvas"></div>
+
+<div class="sidebar">
+  <section class="loading">
+    <article class="card loading">
+      <p class="loading-text">Loading game...</p>
+    </article>
+  </section>
+  
+  <section class="not-loading">
+    <article class="card score">
+      <p>Level <span class="level-current"></span></p>
+      <p>Current score: <span class="score-current"></span></p>
+    </article>
+    <article class="card info pininfo">
+      <p>Click on the map to drop the pin in the correct location</p>
+    </article>
+    <article class="card info pinbutton">
+      <p>Confirm choice</p>
+    </article>
+    <article class="card clue clickable wiki-clue">
+      <h2><img src="<%= image_path "clue-icon.png" %>" width="28px" class="clue-icon-closed"><img src="<%= image_path "clue-icon-open.png" %>" width="28px" class="clue-icon-open"> Clue 1</h2>
+      <p class="tohide small">Wikipedia Clue (-50 points)</p>
+      <p class="hidden clue-wikipedia-clue"></p>
+    </article>
+    <article class="card clue clickable flickr-clue">
+      <h2><img src="<%= image_path "clue-icon.png" %>" width="28px" class="clue-icon-closed"><img src="<%= image_path "clue-icon-open.png" %>" width="28px" class="clue-icon-open"> Clue 2</h2>
+      <p class="tohide small">Flickr Clue (free clue)</p>
+      <p class="hidden"><img src="" class="clue-flickr-image"><br><span class="small">Click image to enlarge</span></p>
+    </article>
+    <article class="card clue clickable name-clue">
+      <h2><img src="<%= image_path "clue-icon.png" %>" width="28px" class="clue-icon-closed"><img src="<%= image_path "clue-icon-open.png" %>" width="28px" class="clue-icon-open"> Clue 3</h2>
+      <p class="tohide small">Name Clue (-100 points)</p>
+      <p class="hidden clue-place-name"></p>
+    </article>
+  </section>
+</div>
+
+<div class="lightbox">
+  <img src="" class="clue-flickr-image">
+</div>
+
+<div class="lightbox-modal">
+  <div class="lightbox-modal-text">
+    <p>You were <span class="modal-miles"></span> miles away from the correct place.</p>
+    <p>You received <span class="modal-points"></span> points from your guess.</p>
+    <p>You lost <span class="modal-clue-points"></span> points from using clues.</p>
+    <p>Your score for this level is <span class="modal-level-points"></span>.</p>
+    <p>Your current score is <span class="modal-current-score"></span>.</p>
+    <p><span class="modal-next-level">Next level &rarr;</span></p>
+  </div>
+</div>
+
+<div class="lightbox-modal-end">
+  <div class="lightbox-modal-end-text">
+    <p><img src="<%= image_path 'no-award.png' %>" class="award award-none"><img src="<%= image_path 'bronze-award.png' %>" class="award award-bronze"><img src="<%= image_path 'silver-award.png' %>" class="award award-silver"><img src="<%= image_path 'gold-award.png' %>" class="award award-gold"></p>
+    <p>Your final score is <span class="modal-end-final-score"></span> out of 4000.</p>
+    <p class="award-info"></p>
+    <p>Challenge your friends with these places by sending them the URL <%= request.original_url %></p>
+    <p>Locations in this game were:
+      <ol>
+        <li class="location-data-1"></li>
+        <li class="location-data-2"></li>
+        <li class="location-data-3"></li>
+        <li class="location-data-4"></li>
+      </ol>
+    </p>
+    <p><a href="<%= new_game_path %>">New Game</a></p>
+    <p><a href="javascript:window.location.reload();">Replay Game</a></p>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDc35dWjPZNb7ghSYl5Fsw-gAagMrk0tPQ">
+</script>
+<%= javascript_include_tag "application" %>

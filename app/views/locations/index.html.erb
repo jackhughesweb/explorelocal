@@ -3,9 +3,12 @@
 <table>
   <thead>
     <tr>
+      <th>Name</th>
       <th>Latitude</th>
       <th>Longitude</th>
-      <th>Name</th>
+      <th>Clue Flickr ID</th>
+      <th>Clue Wikipedia Link</th>
+      <th>Clue Wikipedia Text</th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,9 +18,12 @@
   <tbody>
     <% @locations.each do |location| %>
       <tr>
+        <td><%= location.name %></td>
         <td><%= location.latitude %></td>
         <td><%= location.longitude %></td>
-        <td><%= location.name %></td>
+        <td><%= location.clue_flickr %></td>
+        <td><%= location.clue_wikipedia_link %></td>
+        <td><%= location.clue_wikipedia_text %></td>
         <td><%= link_to 'Show', location %></td>
         <td><%= link_to 'Edit', edit_location_path(location) %></td>
         <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>

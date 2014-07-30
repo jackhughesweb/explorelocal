@@ -10,6 +10,14 @@ class LocationsController < ApplicationController
   # GET /locations/1
   # GET /locations/1.json
   def show
+    require 'flickraw'
+
+    FlickRaw.api_key = "420f3c8d48675ad2a67c191f7a126edf"
+    FlickRaw.shared_secret = "121932a6dd63cfea"
+
+    flickr = FlickRaw::Flickr.new
+    info = flickr.photos.getInfo(:photo_id => @location.clue_flickr)
+    @location_flickr_url = FlickRaw.url_b(info)
   end
 
   # GET /locations/new
@@ -69,6 +77,6 @@ class LocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:latitude, :longitude, :name)
+      params.require(:location).permit(:latitude, :longitude, :name, :clue_flickr, :clue_wikipedia_link, :clue_wikipedia_text)
     end
 end

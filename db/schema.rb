@@ -11,7 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728114141) do
+ActiveRecord::Schema.define(version: 20140730101639) do
+
+  create_table "friendly_id_slugs", force: true do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "games", force: true do |t|
+    t.string   "slug"
+    t.integer  "location1"
+    t.integer  "location2"
+    t.integer  "location3"
+    t.integer  "location4"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "games", ["slug"], name: "index_games_on_slug", unique: true
 
   create_table "locations", force: true do |t|
     t.decimal  "latitude"
@@ -19,6 +44,9 @@ ActiveRecord::Schema.define(version: 20140728114141) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "clue_flickr"
+    t.text     "clue_wikipedia_text"
+    t.string   "clue_wikipedia_link"
   end
 
 end

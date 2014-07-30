@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  slug: MyString
+  location1: 1
+  location2: 1
+  location3: 1
+  location4: 1
+
+two:
+  slug: MyString
+  location1: 1
+  location2: 1
+  location3: 1
+  location4: 1

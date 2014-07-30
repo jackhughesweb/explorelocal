@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
     <%= f.label :latitude %><br>
     <%= f.text_field :latitude %>
   </div>
@@ -19,11 +24,24 @@
     <%= f.label :longitude %><br>
     <%= f.text_field :longitude %>
   </div>
+
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.label :clue_flickr %><br>
+    <%= f.text_field :clue_flickr %>
   </div>
+
+  <div class="field">
+    <%= f.label :clue_wikipedia_link %><br>
+    <%= f.text_field :clue_wikipedia_link %>
+  </div>
+
+  <div class="field">
+    <%= f.label :clue_wikipedia_text %><br>
+    <%= f.text_area :clue_wikipedia_text %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
