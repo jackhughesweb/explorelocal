@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   private
   
   def set_page_title
-    @title = "YRS Project"
+    @title = "ExploreLocal"
   end
 end

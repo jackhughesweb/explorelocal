@@ -10,6 +10,28 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    @location1 = Location.find(@game.location1)
+    @location2 = Location.find(@game.location2)
+    @location3 = Location.find(@game.location3)
+    @location4 = Location.find(@game.location4)
+
+    require 'flickraw'
+
+    FlickRaw.api_key = "420f3c8d48675ad2a67c191f7a126edf"
+    FlickRaw.shared_secret = "121932a6dd63cfea"
+
+    flickr = FlickRaw::Flickr.new
+    info = flickr.photos.getInfo(:photo_id => @location1.clue_flickr)
+    @location1_flickr_url = FlickRaw.url_b(info)
+
+    info = flickr.photos.getInfo(:photo_id => @location2.clue_flickr)
+    @location2_flickr_url = FlickRaw.url_b(info)
+
+    info = flickr.photos.getInfo(:photo_id => @location3.clue_flickr)
+    @location3_flickr_url = FlickRaw.url_b(info)
+
+    info = flickr.photos.getInfo(:photo_id => @location4.clue_flickr)
+    @location4_flickr_url = FlickRaw.url_b(info)
   end
 
   # GET /games/new

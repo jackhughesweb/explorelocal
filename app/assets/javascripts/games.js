@@ -1,8 +1,5 @@
-
-
 (function($){
   var gameData;
-  var locationData = [];
   var markers = [];
   var currentScore = 0;
   var currentLevel = 1;
@@ -119,7 +116,7 @@
   });
 
   $('.pinbutton').on('click', function() {
-    var correctLatLng = new google.maps.LatLng(locationData[currentLevel - 1].latitude, locationData[currentLevel - 1].longitude);
+    var correctLatLng = new google.maps.LatLng(gameData.locations[currentLevel - 1].latitude, gameData.locations[currentLevel - 1].longitude);
     var miledistance = correctLatLng.distanceFrom(guessLatLng, 3959).toFixed(1);
     $('.modal-miles').text(miledistance);
     $('.modal-points').text(getScoreFromMiles(miledistance, 4));
@@ -135,14 +132,19 @@
     $('.lightbox-modal').show();
   });
 
+  $('.modal-info-start').on('click', function() {
+    $('.lightbox-modal-info').hide();
+  });
+
   $('.modal-next-level').on('click', function() {
     if (currentLevel == 4) {
       $('.modal-end-final-score').text(currentScore);
       loadAward();
-      $('.location-data-1').html('<a href="' + locationData[0].clue_wikipedia_link + '">' + locationData[0].name + '</a>');
-      $('.location-data-2').html('<a href="' + locationData[1].clue_wikipedia_link + '">' + locationData[1].name + '</a>');
-      $('.location-data-3').html('<a href="' + locationData[2].clue_wikipedia_link + '">' + locationData[2].name + '</a>');
-      $('.location-data-4').html('<a href="' + locationData[3].clue_wikipedia_link + '">' + locationData[3].name + '</a>');
+      $('.location-data-1').html('<a href="' + gameData.locations[0].clue_wikipedia_link + '">' + gameData.locations[0].name + '</a>');
+      $('.location-data-2').html('<a href="' + gameData.locations[1].clue_wikipedia_link + '">' + gameData.locations[1].name + '</a>');
+      $('.location-data-3').html('<a href="' + gameData.locations[2].clue_wikipedia_link + '">' + gameData.locations[2].name + '</a>');
+      $('.location-data-4').html('<a href="' + gameData.locations[3].clue_wikipedia_link + '">' + gameData.locations[3].name + '</a>');
+      $('.twitter-score').attr('href', 'https://twitter.com/intent/tweet?related=jackhughesweb&text=I%20just%20scored%20' + currentScore + '%20on%20ExploreLocal!%20Beat%20my%20score%20at%20' + window.location.href + '%20%23explorelocal&original_referer=URL#tweet-intent');
       $('.lightbox-modal-end').show();
       $('.lightbox-modal').hide();
     } else {
@@ -152,7 +154,7 @@
       $('.clue.card').addClass('clickable');
       $('.clue-icon-closed').show();
       $('.clue-icon-open').hide();
-      updateClues(locationData[currentLevel - 1]);
+      updateClues(gameData.locations[currentLevel - 1]);
       $('.pinbutton').hide();
       $('.pininfo').show();
       for (var i = 0; i < markers.length; i++) {
@@ -213,24 +215,8 @@
 
   $.get(window.location.pathname + '.json', function(data){
     gameData = data;
-    $('.loading-text').text('Loading level 1...');
-    $.get('/locations/' + gameData.location1 + '.json', function(data){
-        locationData[0] = data;
-        updateClues(locationData[0]);
-        $('.loading-text').text('Loading level 2...');
-        $.get('/locations/' + gameData.location2 + '.json', function(data){
-          locationData[1] = data;
-          $('.loading-text').text('Loading level 3...');
-          $.get('/locations/' + gameData.location3 + '.json', function(data){
-            locationData[2] = data;
-            $('.loading-text').text('Loading level 4...');
-            $.get('/locations/' + gameData.location4 + '.json', function(data){
-              locationData[3] = data;
-              $('.not-loading').show();
-              $('.loading').hide();
-            });
-          });
-        });
-    });
+    updateClues(gameData.locations[0]);
+    $('.not-loading').show();
+    $('.loading').hide();         
   });
 })(jQuery);

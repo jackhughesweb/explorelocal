@@ -1,0 +1,53 @@
+// Place all the styles related to the Pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+header.home {
+  text-align: center;
+  padding: 10em 0;
+  background-image: url(<%= image_path "main-header.jpg" %>);
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  h1 {
+    text-align: center;
+    width: 100%;
+    text-shadow: 1px 1px 4px #000000;
+    font-size: 4em;
+    font-family: 'Fredoka One', cursive;
+    margin: 0;
+  }
+  p {
+    text-shadow: 1px 1px 4px #000000;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5em;
+  }
+  .button {
+    background-color: #188520;
+    border-radius: 0.4em;
+    padding: 0.8em 1.4em;
+    display: inline-block;
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 1px 1px 4px #000000;
+    font-size: 1.3em;
+    font-family: 'Open Sans', sans-serif;
+    &:hover {
+      background-color: #115f17;
+    }
+  }
+}
+
+footer.home {
+  text-align: center;
+  font-size: 0.8em;
+  padding: 0.5em;
+  font-family: 'Open Sans', sans-serif;
+  a {
+    color: #000000;
+  }
+}

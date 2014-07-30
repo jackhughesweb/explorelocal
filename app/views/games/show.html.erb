@@ -8,6 +8,9 @@
   </section>
   
   <section class="not-loading">
+    <article class="card logo">
+      <p class="el-title">ExploreLocal</p>
+    </article>
     <article class="card score">
       <p>Level <span class="level-current"></span></p>
       <p>Current score: <span class="score-current"></span></p>
@@ -40,23 +43,43 @@
   <img src="" class="clue-flickr-image">
 </div>
 
+<div class="lightbox-modal-info">
+  <div class="lightbox-modal-info-text">
+    <table>
+      <tr>
+        <td><img src="<%= image_path "clue-icon.png" %>" width="48px"></td>
+        <td>Use the clues to find the place - but some cost points!</td>
+      </tr> 
+      <tr>
+        <td><img src="<%= image_path "clue-pin.png" %>" width="48px"></td>
+        <td>Drop the pin where your guess is, by clicking on the map</td>
+      </tr>
+      <tr>
+        <td><img src="<%= image_path "clue-icon-open.png" %>" width="48px"></td>
+        <td>Confirm your choice by clicking on the confirm button - you can redrop your pin until you press this button</td>
+      </tr>
+    </table>  
+    <p><span class="modal-info-start button">Start level 1 &rarr;</span></p>
+  </div>
+</div>
+
 <div class="lightbox-modal">
   <div class="lightbox-modal-text">
     <p>You were <span class="modal-miles"></span> miles away from the correct place.</p>
     <p>You received <span class="modal-points"></span> points from your guess.</p>
     <p>You lost <span class="modal-clue-points"></span> points from using clues.</p>
     <p>Your score for this level is <span class="modal-level-points"></span>.</p>
-    <p>Your current score is <span class="modal-current-score"></span>.</p>
-    <p><span class="modal-next-level">Next level &rarr;</span></p>
+    <p><b>Your current score is <span class="modal-current-score"></span>.</b></p>
+    <p><span class="modal-next-level button">Next level &rarr;</span></p>
   </div>
 </div>
 
 <div class="lightbox-modal-end">
   <div class="lightbox-modal-end-text">
     <p><img src="<%= image_path 'no-award.png' %>" class="award award-none"><img src="<%= image_path 'bronze-award.png' %>" class="award award-bronze"><img src="<%= image_path 'silver-award.png' %>" class="award award-silver"><img src="<%= image_path 'gold-award.png' %>" class="award award-gold"></p>
-    <p>Your final score is <span class="modal-end-final-score"></span> out of 4000.</p>
+    <p>Your final score is <b><span class="modal-end-final-score"></span></b> out of 4000.</p>
     <p class="award-info"></p>
-    <p>Challenge your friends with these places by sending them the URL <%= request.original_url %></p>
+    <p>Challenge your friends with these places by <a href="" class="twitter-score" target="_blank">sharing on Twitter</a> or sending them the URL <%= request.original_url %></p>
     <p>Locations in this game were:
       <ol>
         <li class="location-data-1"></li>
@@ -65,8 +88,7 @@
         <li class="location-data-4"></li>
       </ol>
     </p>
-    <p><a href="<%= new_game_path %>">New Game</a></p>
-    <p><a href="javascript:window.location.reload();">Replay Game</a></p>
+    <p><a href="<%= new_game_path %>" class="button">New Game</a> <a href="<%= request.original_url %>" class="button">Replay Game</a> <a href="/" class="button">Home</a></p>
   </div>
 </div>
 

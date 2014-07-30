@@ -3,8 +3,6 @@ Yrsproject::Application.routes.draw do
 
   resources :locations
 
-  get 'randomgame' => 'locations#randomgame'
-
   root 'pages#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
