@@ -2,7 +2,14 @@
 
 <p><%= link_to 'New Location', new_location_path %></p>
 
-<%= will_paginate @products %>
+<%= form_for locations_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<%= will_paginate @locations %>
 
 <% @locations.each do |location| %>
   <article class="location-card">
