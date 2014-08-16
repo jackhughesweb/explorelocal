@@ -1,36 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @location.name %>
-</p>
+<p><%= link_to 'Back', locations_path %></p>
 
-<p>
-  <strong>Latitude:</strong>
-  <%= @location.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @location.longitude %>
-</p>
-
-<p>
-  <strong>Clue Flickr ID:</strong>
-  <%= @location.clue_flickr %>
-  <br>
-  <img src="<%= @location_flickr_url %>" class="flickr-show">
-</p>
-
-<p>
-  <strong>Clue Wikipedia Link:</strong>
-  <%= @location.clue_wikipedia_link %>
-</p>
-
-<p>
-  <strong>Clue Wikipedia Text:</strong>
-  <%= @location.clue_wikipedia_text %>
-</p>
-
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', locations_path %>
+<article class="location-card">
+  <h2><%= @location.name %></h2>
+  <p><img src="http://maps.googleapis.com/maps/api/staticmap?center=<%= @location.latitude %>,<%= @location.longitude %>&zoom=16&size=200x200&markers=<%= @location.latitude %>,<%= @location.longitude %>"></p>
+  <p><%= @location.latitude %>, <%= @location.longitude %></p>
+  <p><img src="<%= @location_flickr_url %>" class="flickr-show"></p>
+  <p><%= @location.clue_flickr %></p>
+  <p><%= @location.clue_wikipedia_link %></p>
+  <p><%= @location.clue_wikipedia_text %></p>
+  <p><%= link_to 'Edit', edit_location_path(@location) %></p>
+</article>

@@ -2,6 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.location-card {
+  max-width: 500px;
+  width: 100%;
+  margin: 1em;
+  padding: 1em;
+  background-color: #eeeeee;
+  box-shadow: 1px 1px 4px #000000;
+  display: inline-block;
+  vertical-align: top;
+}
+
 img.flickr-show {
   max-width: 400px; 
 }

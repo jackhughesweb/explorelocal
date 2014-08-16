@@ -1,37 +1,14 @@
 <h1>Listing locations</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Clue Flickr ID</th>
-      <th>Clue Wikipedia Link</th>
-      <th>Clue Wikipedia Text</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<p><%= link_to 'New Location', new_location_path %></p>
 
-  <tbody>
-    <% @locations.each do |location| %>
-      <tr>
-        <td><%= location.name %></td>
-        <td><%= location.latitude %></td>
-        <td><%= location.longitude %></td>
-        <td><%= location.clue_flickr %></td>
-        <td><%= location.clue_wikipedia_link %></td>
-        <td><%= location.clue_wikipedia_text %></td>
-        <td><%= link_to 'Show', location %></td>
-        <td><%= link_to 'Edit', edit_location_path(location) %></td>
-        <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Location', new_location_path %>
+<% @locations.each do |location| %>
+  <article class="location-card">
+    <h2><%= location.name %></h2>
+    <p><%= location.latitude %>, <%= location.longitude %></p>
+    <p><%= location.clue_flickr %></p>
+    <p><%= location.clue_wikipedia_link %></p>
+    <p><%= location.clue_wikipedia_text %></p>
+    <p><%= link_to 'Show', location %> | <%= link_to 'Edit', edit_location_path(location) %> | <%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </article>
+<% end %>
