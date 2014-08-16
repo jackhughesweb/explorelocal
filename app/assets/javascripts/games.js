@@ -36,6 +36,7 @@
 
       var marker = new google.maps.Marker({
           position: event.latLng,
+          animation: google.maps.Animation.DROP,
           map: map
       });
 
