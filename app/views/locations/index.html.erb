@@ -2,6 +2,8 @@
 
 <p><%= link_to 'New Location', new_location_path %></p>
 
+<%= will_paginate @products %>
+
 <% @locations.each do |location| %>
   <article class="location-card">
     <h2><%= location.name %></h2>

@@ -50,3 +50,5 @@ gem 'flickraw'
 group :production do
     gem 'mysql2'
 end
+
+gem 'will_paginate', '~> 3.0'
