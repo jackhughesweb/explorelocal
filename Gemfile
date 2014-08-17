@@ -53,9 +53,7 @@ gem 'capistrano-rails', group: :development
 gem 'friendly_id'
 gem 'flickraw'
 
-group :production do
-    gem 'mysql2'
-end
+gem 'pg'
 
 gem 'will_paginate', '~> 3.0'
 gem 'httparty', '~> 0.13.1'
