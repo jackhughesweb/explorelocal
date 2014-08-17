@@ -78,12 +78,14 @@ $(document).ready(function() {
           var confirmation = confirm('The similar place "' + data[0].name + '" already exists. Are you sure you want to continue?');
           if (confirmation) {
             $('.flickr_more').hide();
+            $('.location-hidden').hide();
             if (gMapsInit) {
               runQuery($('#query_field').val());
             }
           }
         } else {
           $('.flickr_more').hide();
+          $('.location-hidden').hide();
           if (gMapsInit) {
             runQuery($('#query_field').val());
           }
