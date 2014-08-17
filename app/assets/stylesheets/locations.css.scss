@@ -11,6 +11,9 @@
   box-shadow: 1px 1px 4px #000000;
   display: inline-block;
   vertical-align: top;
+  &.location-new {
+    display: block;
+  }
 }
 
 img.flickr-show {
@@ -35,4 +38,8 @@ ul.wiki_articles {
   .searchmatch {
     font-weight: bold;
   }
+}
+
+.location-hidden {
+  display: none;
 }

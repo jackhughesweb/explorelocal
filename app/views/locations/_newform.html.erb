@@ -1,5 +1,3 @@
-<input id="query_field" placeholder="Search" type="text"></input> <button id="getdata">Get Data</button> <%= image_tag 'powered-by-google.png' %>
-
 <%= form_for(@location) do |f| %>
   <% if @location.errors.any? %>
     <div id="error_explanation">
@@ -13,26 +11,55 @@
     </div>
   <% end %>
 
-  <article class="location-card">
-    <h2><%= f.label :name %> <%= f.text_field :name %></h2>
-    <p><%= f.label :latitude %> <%= f.text_field :latitude %>, <%= f.label :longitude %> <%= f.text_field :longitude %></p>
-    <p><img class="location-map"></p>
-    <p><%= f.text_field :clue_flickr, :hidden => true %></p>
-    <p><span class="flickr_photos"></span><span><a href="#" class="flickr_more">Load more...</a></span></p>
-    <p><%= f.label :clue_wikipedia_link %> <%= f.text_field :clue_wikipedia_link %></p>
-    <p><%= f.label :clue_wikipedia_text %> <%= f.text_area :clue_wikipedia_text %></p>
-    <p><ul class="wiki_articles"></ul></p>
-    <p><%= f.submit %></p>
+  <article class="location-card location-new">
+    <h2>Search</h2>
+    <p>
+      <input id="query_field" placeholder="Search" type="text"></input>
+      <button id="getdata" type="button">Search</button>
+      <%= image_tag 'powered-by-google.png' %>
+    </p>
   </article>
+  <div class="location-hidden">
+    <article class="location-card location-new">
+      <h2>Name</h2>
+      <p><%= f.text_field :name %></p>
+    </article>
+    <article class="location-card location-new">
+      <h2>Google Maps</h2>
+      <p>
+        <%= f.label :latitude %>
+        <%= f.text_field :latitude %>
+      </p>
+      <p>
+        <%= f.label :longitude %>
+        <%= f.text_field :longitude %>
+      </p>
+      <p><img class="location-map"></p>
+    </article>
+    <article class="location-card location-new">
+      <h2>Flickr</h2>
+      <p><%= f.text_field :clue_flickr, :hidden => true %></p>
+      <p><span class="flickr_photos"></span></p>
+      <p><a href="#" class="flickr_more">Load more...</a></p>
+    </article>
+    <article class="location-card location-new">
+      <h2>Wikipedia</h2>
+      <p><ul class="wiki_articles"></ul></p>
+      <p><%= f.label :clue_wikipedia_link %> <%= f.text_field :clue_wikipedia_link %></p>
+      <p><%= f.label :clue_wikipedia_text %> <%= f.text_area :clue_wikipedia_text %></p>
+    </article>
 
-  <article class="location-card">
-    <h2 id="location-preview-name">Name</h2>
-    <p><img src="http://maps.googleapis.com/maps/api/staticmap?center=0,0&zoom=16&size=200x200&markers=0,0" id="location-preview-map"></p>
-    <p id="location-preview-latlng">0, 0</p>
-    <p><img src="" id="location-preview-flickr-pic" class="flickr-show"></p>
-    <p id="location-preview-wiki-link">Wiki link</p>
-    <p id="location-preview-wiki-text">Wiki text</p>
-  </article>
+    <article class="location-card">
+      <p>Preview</p>
+      <h2 id="location-preview-name">Name</h2>
+      <p><img src="http://maps.googleapis.com/maps/api/staticmap?center=0,0&zoom=16&size=200x200&markers=0,0" id="location-preview-map"></p>
+      <p id="location-preview-latlng">0, 0</p>
+      <p><img src="" id="location-preview-flickr-pic" class="flickr-show"></p>
+      <p id="location-preview-wiki-link">Wiki link</p>
+      <p id="location-preview-wiki-text">Wiki text</p>
+    </article>
+    <p><%= f.submit %></p>
+  </div>
 <% end %>
 
 

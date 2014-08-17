@@ -37,6 +37,7 @@ $(document).ready(function() {
         $('#location_longitude').val(results[0].geometry.location.lng());
         $('.location-map').attr('src', 'http://maps.googleapis.com/maps/api/staticmap?center=' + results[0].geometry.location.lat() + ',' + results[0].geometry.location.lng() + '&zoom=16&size=200x200&markers=' + results[0].geometry.location.lat() + ',' + results[0].geometry.location.lng());
         updatePreview();
+        $('.location-hidden').show();
         $.getJSON('/locations/flickr.json', { search: results[0].name }, function(data) {
           var photos = data.flickr;
           flickrPage = data.page;
