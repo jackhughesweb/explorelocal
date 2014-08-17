@@ -13,6 +13,7 @@
 
   <article class="location-card location-new">
     <h2>Search</h2>
+    <p>Include the location in your search for a more precise result.</p>
     <p>
       <input id="query_field" placeholder="Search" type="text"></input>
       <button id="getdata" type="button">Search</button>
@@ -26,26 +27,30 @@
     </article>
     <article class="location-card location-new">
       <h2>Google Maps</h2>
-      <p>
-        <%= f.label :latitude %>
-        <%= f.text_field :latitude %>
-      </p>
-      <p>
-        <%= f.label :longitude %>
-        <%= f.text_field :longitude %>
-      </p>
+      <p><%= f.text_field :latitude, :hidden => true %><%= f.text_field :longitude, :hidden => true %></p>
       <p><img class="location-map"></p>
+      <p>Map incorrect? Include location information in your search for a more precise result.</p>
     </article>
     <article class="location-card location-new">
       <h2>Flickr</h2>
       <p><%= f.text_field :clue_flickr, :hidden => true %></p>
       <p><span class="flickr_photos"></span></p>
       <p><a href="#" class="flickr_more">Load more...</a></p>
+      <p class="custom_search_flickr_info">Results irrelevant? Try a <a href="#" id="custom_search_flickr">custom search</a>.</p>
+      <p class="custom_search_flickr">
+        <input id="query_flickr_field" placeholder="Search" type="text"></input>
+        <button id="getdata_flickr" type="button">Search</button>
+      </p>
     </article>
     <article class="location-card location-new">
       <h2>Wikipedia</h2>
       <p><ul class="wiki_articles"></ul></p>
-      <p><%= f.label :clue_wikipedia_link %> <%= f.text_field :clue_wikipedia_link %></p>
+      <p class="custom_search_wiki_info">Results irrelevant? Try a <a href="#" id="custom_search_wiki">custom search</a>.</p>
+      <p class="custom_search_wiki">
+        <input id="query_wiki_field" placeholder="Search" type="text"></input>
+        <button id="getdata_wiki" type="button">Search</button>
+      </p>
+      <p><%= f.text_field :clue_wikipedia_link, :hidden => true %></p>
       <p><%= f.label :clue_wikipedia_text %> <%= f.text_area :clue_wikipedia_text %></p>
     </article>
 
@@ -53,7 +58,6 @@
       <p>Preview</p>
       <h2 id="location-preview-name">Name</h2>
       <p><img src="http://maps.googleapis.com/maps/api/staticmap?center=0,0&zoom=16&size=200x200&markers=0,0" id="location-preview-map"></p>
-      <p id="location-preview-latlng">0, 0</p>
       <p><img src="" id="location-preview-flickr-pic" class="flickr-show"></p>
       <p id="location-preview-wiki-link">Wiki link</p>
       <p id="location-preview-wiki-text">Wiki text</p>
