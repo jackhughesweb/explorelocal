@@ -7,7 +7,7 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.search(params[:search]).paginate(:page => params[:page], :per_page => 3)
+    @locations = Location.search(params[:search]).paginate(:page => params[:page], :per_page => 20)
   end
 
   # GET /locations/1
@@ -21,6 +21,13 @@ class LocationsController < ApplicationController
     flickr = FlickRaw::Flickr.new
     info = flickr.photos.getInfo(:photo_id => @location.clue_flickr)
     @location_flickr_url = FlickRaw.url_b(info)
+
+    @games = Game.where("location1 = ? OR location2 = ? OR location3 = ? OR location4 = ?", @location.id, @location.id, @location.id, @location.id)
+    if @games.length > 0
+      @game = true
+    else
+      @game = false
+    end
   end
 
   # GET /locations/new

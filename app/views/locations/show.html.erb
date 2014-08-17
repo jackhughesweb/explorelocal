@@ -11,4 +11,5 @@
   <p><%= @location.clue_wikipedia_link %></p>
   <p><%= @location.clue_wikipedia_text %></p>
   <p><%= link_to 'Edit', edit_location_path(@location) %></p>
+  <p><% if @game %>Warning - belongs to games <% end %><%= link_to 'Destroy', @location, method: :delete, data: { confirm: 'Are you sure?' } %></p>
 </article>

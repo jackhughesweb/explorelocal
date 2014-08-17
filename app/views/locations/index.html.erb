@@ -11,13 +11,8 @@
 
 <%= will_paginate @locations %>
 
-<% @locations.each do |location| %>
-  <article class="location-card">
-    <h2><%= location.name %></h2>
-    <p><%= location.latitude %>, <%= location.longitude %></p>
-    <p><%= location.clue_flickr %></p>
-    <p><%= location.clue_wikipedia_link %></p>
-    <p><%= location.clue_wikipedia_text %></p>
-    <p><%= link_to 'Show', location %> | <%= link_to 'Edit', edit_location_path(location) %> | <%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-  </article>
-<% end %>
+<ul>
+  <% @locations.each do |location| %>
+    <li><%= link_to location.name, location %></li>
+  <% end %>
+</ul>
