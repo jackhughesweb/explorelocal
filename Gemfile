@@ -52,3 +52,5 @@ group :production do
 end
 
 gem 'will_paginate', '~> 3.0'
+gem 'httparty', '~> 0.13.1'
+gem 'nokogiri', '~> 1.6.3.1'

@@ -4,9 +4,18 @@
   <title><%= @title %></title>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Fredoka+One' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", media: "all" %>
+  <% if params[:controller] == 'games' && params[:action] == 'show' %>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDc35dWjPZNb7ghSYl5Fsw-gAagMrk0tPQ">
+    </script>
+  <% end %>
+  <% if params[:controller] == 'locations' && params[:action] == 'new' %>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDc35dWjPZNb7ghSYl5Fsw-gAagMrk0tPQ">
+    </script>
+  <% end %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body <% if params[:controller] == 'games' && params[:action] == 'show' %>class="game-js"<% end %><% if params[:controller] == 'locations' && params[:action] == 'new' %>class="location-new-js"<% end %>>
 
 <%= yield %>
 

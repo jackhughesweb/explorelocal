@@ -2,6 +2,8 @@ class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate
 
+  include ActionView::Helpers::SanitizeHelper
+
   # GET /locations
   # GET /locations.json
   def index
@@ -24,6 +26,50 @@ class LocationsController < ApplicationController
   # GET /locations/new
   def new
     @location = Location.new
+  end
+
+  # GET /locations/flickr.json
+  def flickr
+    require 'flickraw'
+
+    FlickRaw.api_key = ENV["EL_FLICKR_API"]
+    FlickRaw.shared_secret = ENV["EL_FLICKR_API_SECRET"]
+
+    @page = params[:page] || 1;
+
+    flickr = FlickRaw::Flickr.new
+    @search = flickr.photos.search(:text => params[:search], :license => '1,2,3,4,5,6,7', :sort => 'relevance', :per_page => 10, :page => @page)
+  end
+
+  def wikisearch
+    # url = HTTParty.get("https://en.wikipedia.org/w/api.php",
+    #     :headers => { 'ContentType' => 'application/json' }, :query => {:action => 'opensearch', :search => params[:search], :limit => 5, :namespace => 0, :format => 'json'} )
+    # response = JSON.parse(url.body)
+    # @articles = response[1]
+
+    url = HTTParty.get("https://en.wikipedia.org/w/api.php",
+        :headers => { 'ContentType' => 'application/json' }, :query => {:action => 'query', :list => 'search', :srsearch => params[:search], :srlimit => 5, :format => 'json'} )
+    response = JSON.parse(url.body)
+    @articles = response["query"]["search"]
+  end
+
+  def wikitext
+    url = HTTParty.get("https://en.wikipedia.org/w/api.php",
+        :headers => { 'ContentType' => 'application/json' }, :query => {:action => 'query', :titles => params[:search], :prop => 'extracts|info', :inprop => 'url', :format => 'json'} )
+    response = JSON.parse(url.body)
+    @query = response["query"]["pages"][response["query"]["pages"].first(1)[0][0]]
+    @url = @query["fullurl"]
+
+    require 'nokogiri'
+    doc = Nokogiri::HTML(@query["extract"])
+
+    @htmltext = ''
+
+    doc.css('p').each do |para|
+      @htmltext << para.content
+      @htmltext << ' '
+    end
+    @text = sanitize(@htmltext, :tags=>[]).gsub(/. #{params[:search]}/, '. [The location]').gsub(/^#{params[:search]}/, '[The location]').gsub(/#{params[:search]}/, '[the location]').truncate(1000, separator: '.', omission: '.')
   end
 
   # GET /locations/1/edit

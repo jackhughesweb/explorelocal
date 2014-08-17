@@ -1,6 +1,9 @@
 Yrsproject::Application.routes.draw do
   resources :games
 
+  get 'locations/flickr' => 'locations#flickr'
+  get 'locations/wikisearch' => 'locations#wikisearch'
+  get 'locations/wikitext' => 'locations#wikitext'
   resources :locations
 
   root 'pages#index'

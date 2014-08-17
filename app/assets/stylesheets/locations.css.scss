@@ -16,3 +16,23 @@
 img.flickr-show {
   max-width: 400px; 
 }
+
+img.location-flickr-thumb {
+  max-width: 100px;
+  max-height: 100px;
+  margin: 0.5em;
+  border: 5px solid #eeeeee;
+  &.selected {
+    border: 5px solid #00ff00;
+  }
+}
+
+.flickr_more {
+  display: none;
+}
+
+ul.wiki_articles {
+  .searchmatch {
+    font-weight: bold;
+  }
+}

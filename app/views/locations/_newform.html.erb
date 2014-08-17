@@ -1,0 +1,40 @@
+<input id="query_field" placeholder="Search" type="text"></input> <button id="getdata">Get Data</button> <%= image_tag 'powered-by-google.png' %>
+
+<%= form_for(@location) do |f| %>
+  <% if @location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+      <ul>
+      <% @location.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <article class="location-card">
+    <h2><%= f.label :name %> <%= f.text_field :name %></h2>
+    <p><%= f.label :latitude %> <%= f.text_field :latitude %>, <%= f.label :longitude %> <%= f.text_field :longitude %></p>
+    <p><img class="location-map"></p>
+    <p><%= f.text_field :clue_flickr, :hidden => true %></p>
+    <p><span class="flickr_photos"></span><span><a href="#" class="flickr_more">Load more...</a></span></p>
+    <p><%= f.label :clue_wikipedia_link %> <%= f.text_field :clue_wikipedia_link %></p>
+    <p><%= f.label :clue_wikipedia_text %> <%= f.text_area :clue_wikipedia_text %></p>
+    <p><ul class="wiki_articles"></ul></p>
+    <p><%= f.submit %></p>
+  </article>
+
+  <article class="location-card">
+    <h2 id="location-preview-name">Name</h2>
+    <p><img src="http://maps.googleapis.com/maps/api/staticmap?center=0,0&zoom=16&size=200x200&markers=0,0" id="location-preview-map"></p>
+    <p id="location-preview-latlng">0, 0</p>
+    <p><img src="" id="location-preview-flickr-pic" class="flickr-show"></p>
+    <p id="location-preview-wiki-link">Wiki link</p>
+    <p id="location-preview-wiki-text">Wiki text</p>
+  </article>
+<% end %>
+
+
+
+<div id="location-map-canvas" class="location-map-canvas"></div>
