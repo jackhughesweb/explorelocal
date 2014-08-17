@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Yrsproject::Application.config.secret_key_base = '2bf91e6d9234948c2f622cb0b5a280f6a919fdfc0e4caafc5d2a0e4d85dbdc6e90f6c5e61540eadc442f5282077a38f2bf5323af2e3cab94f2528ad4b3a7f6d3'
+Yrsproject::Application.config.secret_key_base = ENV['EL_SECRET']
