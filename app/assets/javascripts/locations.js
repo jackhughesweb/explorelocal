@@ -72,7 +72,7 @@ $(document).ready(function() {
     }
 
     $('#getdata').on('click', function (event) {
-      $.getJSON('/locations.json', { search: results[0].name }, function(data) {
+      $.getJSON('/locations.json', { search: $('#query_field').val() }, function(data) {
         if (data.length > 0) {
           var confirmation = confirm('The similar place "' + data[0].name + '" already exists. Are you sure you want to continue?');
           if (confirmation) {
