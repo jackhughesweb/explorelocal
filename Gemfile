@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.4'
+gem 'rails', '4.0.5'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -53,7 +53,7 @@ gem 'capistrano-rails', group: :development
 gem 'friendly_id'
 gem 'flickraw'
 
-gem 'pg'
+gem 'pg', '0.15.1'
 
 gem 'will_paginate', '~> 3.0'
 gem 'httparty', '~> 0.13.1'
