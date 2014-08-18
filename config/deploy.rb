@@ -16,6 +16,8 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 # set :default_env, { path: "/home/deployer/.rbenv/bin:$PATH" }
 set :keep_releases, 5
 
+set :rvm_ruby_version, '2.1.2'
+
 namespace :deploy do
 
   desc 'Setup config'
@@ -39,7 +41,7 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
-      execute :run, "/etc/init.d/unicorn_explorelocal stop"
+      execute "#{current_path}/config/unicorn_init.sh stop"
     end
   end
 
@@ -48,7 +50,7 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
-      execute :run, "/etc/init.d/unicorn_explorelocal restart"
+      execute "#{current_path}/config/unicorn_init.sh restart"
     end
   end
 
