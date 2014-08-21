@@ -3,10 +3,12 @@ $(document).ready(function() {
 
     var gameData;
     var markers = [];
+    var markersGuess = [];
     var currentScore = 0;
     var currentLevel = 1;
     var guessLatLng;
     var map;
+    var mapGuess;
 
     function initialize() {
 
@@ -28,6 +30,11 @@ $(document).ready(function() {
           mapOptions);
 
       map.setOptions({styles: mapStyle});
+
+      mapGuess = new google.maps.Map(document.getElementById("map-canvas-guess"),
+          mapOptions);
+
+      mapGuess.setOptions({styles: mapStyle});
 
       google.maps.event.addListener(map, 'click', function(event) {
         for (var i = 0; i < markers.length; i++) {
@@ -141,6 +148,31 @@ $(document).ready(function() {
         $('.modal-next-level').html('Next &rarr;');
       }
       $('.lightbox-modal').show();
+      google.maps.event.trigger(mapGuess, "resize");
+      for (var i = 0; i < markersGuess.length; i++) {
+        markersGuess[i].setMap(null);
+      }
+      markersGuess = [];
+      var markerGuess1 = new google.maps.Marker({
+          position: guessLatLng,
+          map: mapGuess
+      });
+      markersGuess.push(markerGuess1);
+      var circ = new google.maps.Circle();
+      circ.setRadius(miledistance * 1609.0);
+      circ.setCenter(guessLatLng);
+      mapGuess.fitBounds(circ.getBounds());
+      mapGuess.setCenter(guessLatLng);
+      var mapPath = new google.maps.Polyline({
+        path: [guessLatLng, correctLatLng],
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+      });
+      markersGuess.push(mapPath);
+      mapPath.setMap(mapGuess);
+
     });
 
     $('.modal-info-start').on('click', function() {
