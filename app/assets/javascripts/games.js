@@ -151,10 +151,10 @@ $(document).ready(function() {
       if (currentLevel == 4) {
         $('.modal-end-final-score').text(currentScore);
         loadAward();
-        $('.location-data-1').html('<a href="' + gameData.locations[0].clue_wikipedia_link + '">' + gameData.locations[0].name + '</a>');
-        $('.location-data-2').html('<a href="' + gameData.locations[1].clue_wikipedia_link + '">' + gameData.locations[1].name + '</a>');
-        $('.location-data-3').html('<a href="' + gameData.locations[2].clue_wikipedia_link + '">' + gameData.locations[2].name + '</a>');
-        $('.location-data-4').html('<a href="' + gameData.locations[3].clue_wikipedia_link + '">' + gameData.locations[3].name + '</a>');
+        $('.location-data-1').html('<a href="' + gameData.locations[0].clue_wikipedia_link + '">' + gameData.locations[0].name + '</a> (<a href="' + gameData.locations[0].flickr_page + '">Flickr photo</a>)');
+        $('.location-data-2').html('<a href="' + gameData.locations[1].clue_wikipedia_link + '">' + gameData.locations[1].name + '</a> (<a href="' + gameData.locations[1].flickr_page + '">Flickr photo</a>)');
+        $('.location-data-3').html('<a href="' + gameData.locations[2].clue_wikipedia_link + '">' + gameData.locations[2].name + '</a> (<a href="' + gameData.locations[2].flickr_page + '">Flickr photo</a>)');
+        $('.location-data-4').html('<a href="' + gameData.locations[3].clue_wikipedia_link + '">' + gameData.locations[3].name + '</a> (<a href="' + gameData.locations[3].flickr_page + '">Flickr photo</a>)');
         $('.twitter-score').attr('href', 'https://twitter.com/intent/tweet?related=jackhughesweb&text=I%20just%20scored%20' + currentScore + '%20on%20ExploreLocal!%20Beat%20my%20score%20at%20' + window.location.href + '%20%23explorelocal&original_referer=URL#tweet-intent');
         $('.lightbox-modal-end').show();
         $('.lightbox-modal').hide();

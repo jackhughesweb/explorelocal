@@ -23,15 +23,19 @@ class GamesController < ApplicationController
     flickr = FlickRaw::Flickr.new
     info = flickr.photos.getInfo(:photo_id => @location1.clue_flickr)
     @location1_flickr_url = FlickRaw.url_b(info)
+    @location1_flickr_page = info.urls[0]._content
 
     info = flickr.photos.getInfo(:photo_id => @location2.clue_flickr)
     @location2_flickr_url = FlickRaw.url_b(info)
+    @location2_flickr_page = info.urls[0]._content
 
     info = flickr.photos.getInfo(:photo_id => @location3.clue_flickr)
     @location3_flickr_url = FlickRaw.url_b(info)
+    @location3_flickr_page = info.urls[0]._content
 
     info = flickr.photos.getInfo(:photo_id => @location4.clue_flickr)
     @location4_flickr_url = FlickRaw.url_b(info)
+    @location4_flickr_page = info.urls[0]._content
   end
 
   # GET /games/new
