@@ -61,6 +61,7 @@ GEM
     flickraw (0.9.8)
     friendly_id (5.0.4)
       activerecord (>= 4.0.0)
+    geocoder (1.2.4)
     hike (1.2.3)
     httparty (0.13.1)
       json (~> 1.8)
@@ -164,6 +165,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   flickraw
   friendly_id
+  geocoder (~> 1.2.4)
   httparty (~> 0.13.1)
   jbuilder (~> 1.2)
   jquery-rails

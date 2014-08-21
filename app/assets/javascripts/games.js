@@ -10,8 +10,8 @@ $(document).ready(function() {
 
     function initialize() {
 
-      var curLat = 52.4805801;
-      var curLng = -1.8927344;
+      var curLat = 0;
+      var curLng = 0;
 
       var mapStyle = [{
         "featureType": "poi", 
@@ -20,7 +20,7 @@ $(document).ready(function() {
 
       var mapOptions = {
         center: new google.maps.LatLng(curLat, curLng),
-        zoom: 13,
+        zoom: 1,
         disableDefaultUI: true
       };
 
@@ -55,6 +55,14 @@ $(document).ready(function() {
         var myLatLng = new google.maps.LatLng(newLat, newLong);
         map.setCenter(myLatLng);
       }
+
+      $.get(window.location.pathname + '.json', function(data){
+        gameData = data;
+        resetMap();
+        updateClues(gameData.locations[0]);
+        $('.not-loading').show();
+        $('.loading').hide();         
+      });
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
@@ -164,8 +172,7 @@ $(document).ready(function() {
           markers[i].setMap(null);
         }
         markers = [];
-        map.setZoom(13);
-        map.setCenter(new google.maps.LatLng(52.4805801, -1.8927344));
+        resetMap();
         updateScreen();
         $('.lightbox-modal').hide();
       }
@@ -214,13 +221,15 @@ $(document).ready(function() {
       $('.level-current').text(currentLevel);
     }
 
-    updateScreen();
+    function resetMap() {
+      var circ = new google.maps.Circle();
+      var latlng = new google.maps.LatLng(gameData.latitude, gameData.longitude);
+      circ.setRadius(gameData.radius * 1609.0);
+      circ.setCenter(latlng);
+      map.setCenter(latlng);
+      map.fitBounds(circ.getBounds());
+    }
 
-    $.get(window.location.pathname + '.json', function(data){
-      gameData = data;
-      updateClues(gameData.locations[0]);
-      $('.not-loading').show();
-      $('.loading').hide();         
-    });
+    updateScreen();
   }
 });

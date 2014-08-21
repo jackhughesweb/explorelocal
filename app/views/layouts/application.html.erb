@@ -4,7 +4,7 @@
   <title><%= @title %></title>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Fredoka+One' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", media: "all" %>
-  <% if params[:controller] == 'games' && params[:action] == 'show' %>
+  <% if params[:controller] == 'games' %>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDc35dWjPZNb7ghSYl5Fsw-gAagMrk0tPQ">
     </script>
   <% end %>

@@ -8,6 +8,9 @@
       <th>Location2</th>
       <th>Location3</th>
       <th>Location4</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Radius</th>
       <th></th>
       <th></th>
       <th></th>
@@ -22,6 +25,9 @@
         <td><%= game.location2 %></td>
         <td><%= game.location3 %></td>
         <td><%= game.location4 %></td>
+        <td><%= game.latitude %></td>
+        <td><%= game.longitude %></td>
+        <td><%= game.radius %></td>
         <td><%= link_to 'Show', game %></td>
         <td><%= link_to 'Edit', edit_game_path(game) %></td>
         <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>

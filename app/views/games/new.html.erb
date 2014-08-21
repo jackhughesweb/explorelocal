@@ -1,0 +1,12 @@
+<header class="home">
+  <h1><%= @title %></h1>
+  <%= form_for([@game], :html => {:oninput => "document.getElementById('game_new_radius_out').innerHTML = document.getElementById('game_new_radius').value"}) do |f| %>
+  <p class="large">Use your current location or choose another:</p>
+  <p><span class="group"><a href="#" class="button game-new-location-button">Use current location</a><input id="game_new_location" name="game_new_location" class="game_new_location game-new-form" placeholder="or type a location here"></input></span></p>
+  <p><span class="game-new-location-radius">Radius: <input id="game_new_radius" name="game_new_radius" type="range" min="1" max="40" step="1" value="5" class="game-new-form"></input> <output for="game_new_radius" name="game_new_radius_out" id="game_new_radius_out">5</output> miles</span></p>
+  <p><button class="button" id="game-start" disabled="disabled">Enter a location</button></p>
+  <% end %>
+</header>
+<footer class="home">
+  <%= @title %> is a project by <a href="http://jackhughesweb.com">Jack Hughes</a> for <a href="http://festivalofco.de">YRS Festival of Code 2014</a>
+</footer>

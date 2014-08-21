@@ -1,4 +1,5 @@
 Yrsproject::Application.routes.draw do
+  get 'games/check_game' => 'games#check_game'
   resources :games
 
   get 'locations/flickr' => 'locations#flickr'
