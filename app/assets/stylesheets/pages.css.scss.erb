@@ -23,7 +23,9 @@ header.home {
     margin-left: auto;
     margin-right: auto;
     font-family: 'Open Sans', sans-serif;
-    font-size: 1.5em;
+    &.large {
+      font-size: 1.5em;
+    }
   }
   .button {
     background-color: #188520;
@@ -36,9 +38,61 @@ header.home {
     box-shadow: 1px 1px 4px #000000;
     font-size: 1.3em;
     font-family: 'Open Sans', sans-serif;
-    &:hover {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    &:hover, &:disabled {
       background-color: #115f17;
     }
+    &.game-new-location-button{
+      background-color: #16beff;
+      &:hover {
+        background-color: #0f80ac;
+      }
+    }
+  }
+  input.game_new_location {
+    border-radius: 0.4em;
+    padding: 0.8em 1.4em;
+    display: inline-block;
+    text-decoration: none;
+    box-shadow: 1px 1px 4px #000000;
+    font-size: 1.3em;
+    font-family: 'Open Sans', sans-serif;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+  }
+  span.group {
+    * {
+      border-radius: 0;
+      box-shadow: none;
+    }
+    & > *:first-child {
+      border-radius: 0.4em 0 0 0.4em;
+    }
+    & > *:last-child {
+      border-radius: 0 0.4em 0.4em 0;
+    }
+    box-shadow: 1px 1px 4px #000000;
+    border-radius: 0.4em;
+    display: inline-block;
+  }
+  span.game-new-location-radius {
+    border-radius: 0.4em;
+    padding: 0.8em 1.4em;
+    background-color: #ffffff;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 1px 1px 4px #000000;
+    font-size: 1.3em;
+    font-family: 'Open Sans', sans-serif;
+    text-shadow: none;
+    color: #000000;
   }
 }
 

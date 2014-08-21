@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140730101639) do
+ActiveRecord::Schema.define(version: 20140821112349) do
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(version: 20140730101639) do
     t.integer  "location4"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "latitude",   default: 52.4805801
+    t.decimal  "longitude",  default: -1.8927344
+    t.integer  "radius",     default: 15
   end
 
   add_index "games", ["slug"], name: "index_games_on_slug", unique: true
