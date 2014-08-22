@@ -75,7 +75,7 @@ $(document).ready(function() {
         "game_report_radius": $('#game-report-radius').val(),
         "game_report_message": $('#game-report-message').val(),
         "game_report_name": $('#game-report-name').val(),
-        "game_report_email": $('#game-report-email').val(),
+        "game_report_email": $('#game-report-email').val()
       },
       success: function(result) {
         $('#game-report-submit').text('Sent');
