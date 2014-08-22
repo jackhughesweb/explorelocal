@@ -137,10 +137,10 @@ $(document).ready(function() {
       var correctLatLng = new google.maps.LatLng(gameData.locations[currentLevel - 1].latitude, gameData.locations[currentLevel - 1].longitude);
       var miledistance = correctLatLng.distanceFrom(guessLatLng, 3959).toFixed(1);
       $('.modal-miles').text(miledistance);
-      $('.modal-points').text(getScoreFromMiles(miledistance, 4));
+      $('.modal-points').text(getScoreFromMiles(miledistance, gameData.radius));
       $('.modal-clue-points').text(getCluePoints());
-      $('.modal-level-points').text(getScoreFromMiles(miledistance, 4) - getCluePoints());
-      currentScore += getScoreFromMiles(miledistance, 4);
+      $('.modal-level-points').text(getScoreFromMiles(miledistance, gameData.radius) - getCluePoints());
+      currentScore += getScoreFromMiles(miledistance, gameData.radius);
       currentScore -= getCluePoints();
       updateScreen();
       $('.modal-current-score').text(currentScore);
