@@ -9,6 +9,12 @@ header.home {
   background-size: cover;
   background-position: center;
   color: #ffffff;
+  a.game-new-report-link {
+    color: #ffffff;
+  }
+  .game-new-report-info {
+    display: none;
+  }
   h1 {
     text-align: center;
     width: 100%;
@@ -23,9 +29,12 @@ header.home {
     margin-left: auto;
     margin-right: auto;
     font-family: 'Open Sans', sans-serif;
-    font-size: 1.5em;
+    &.large {
+      font-size: 1.5em;
+    }
   }
   .button {
+    text-shadow: 1px 1px 4px #000000;
     background-color: #188520;
     border-radius: 0.4em;
     padding: 0.8em 1.4em;
@@ -36,9 +45,61 @@ header.home {
     box-shadow: 1px 1px 4px #000000;
     font-size: 1.3em;
     font-family: 'Open Sans', sans-serif;
-    &:hover {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    &:hover, &:disabled {
       background-color: #115f17;
     }
+    &.game-new-location-button{
+      background-color: #16beff;
+      &:hover {
+        background-color: #0f80ac;
+      }
+    }
+  }
+  input.game_new_location {
+    border-radius: 0.4em;
+    padding: 0.8em 1.4em;
+    display: inline-block;
+    text-decoration: none;
+    box-shadow: 1px 1px 4px #000000;
+    font-size: 1.3em;
+    font-family: 'Open Sans', sans-serif;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+  }
+  span.group {
+    * {
+      border-radius: 0;
+      box-shadow: none;
+    }
+    & > *:first-child {
+      border-radius: 0.4em 0 0 0.4em;
+    }
+    & > *:last-child {
+      border-radius: 0 0.4em 0.4em 0;
+    }
+    box-shadow: 1px 1px 4px #000000;
+    border-radius: 0.4em;
+    display: inline-block;
+  }
+  span.game-new-location-radius {
+    border-radius: 0.4em;
+    padding: 0.8em 1.4em;
+    background-color: #ffffff;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 1px 1px 4px #000000;
+    font-size: 1.3em;
+    font-family: 'Open Sans', sans-serif;
+    text-shadow: none;
+    color: #000000;
   }
 }
 
@@ -49,5 +110,60 @@ footer.home {
   font-family: 'Open Sans', sans-serif;
   a {
     color: #000000;
+  }
+}
+
+.lightbox-modal-game-report, .lightbox-modal-game-report-done {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: none;
+  .button {
+    background-color: #188520;
+    border-radius: 0.4em;
+    padding: 0.8em 1.4em;
+    display: inline-block;
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    font-size: 1em;
+    &:hover, &:disabled {
+      background-color: #115f17;
+    }
+  }
+  a {
+    color: #000000;
+  }
+  .lightbox-modal-game-report-text, .lightbox-modal-game-report-done-text {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
+    height: 100%;
+    padding: 1em;
+    width: 40%;
+    overflow: scroll;
+    input, textarea {
+      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
+      font-size: 1em;
+      border-radius: 0.4em;
+      padding: 0.8em 1.4em;
+      display: inline-block;
+      text-decoration: none;
+      font-family: 'Open Sans', sans-serif;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      appearance: none;
+      border: 2px solid #188520;
+    }
   }
 }

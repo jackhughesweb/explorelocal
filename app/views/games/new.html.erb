@@ -1,0 +1,41 @@
+<header class="home">
+  <h1><%= @title %></h1>
+  <%= form_for([@game], :html => {:oninput => "document.getElementById('game_new_radius_out').innerHTML = document.getElementById('game_new_radius').value"}) do |f| %>
+  <p class="large">Use your current location or choose another:</p>
+  <p><span class="group"><a href="#" class="button game-new-location-button">Use current location</a><input id="game_new_location" name="game_new_location" class="game_new_location game-new-form" placeholder="or type a location here"></input></span></p>
+  <p><span class="game-new-location-radius">Radius: <input id="game_new_radius" name="game_new_radius" type="range" min="1" max="40" step="1" value="5" class="game-new-form"></input> <output for="game_new_radius" name="game_new_radius_out" id="game_new_radius_out">5</output> miles</span></p>
+  <p><button class="button" id="game-start" disabled="disabled">Enter a location</button></p>
+  <p class="game-new-report-info">Sorry, but there are not enough locations for a game based on your search.</p>
+  <p class="game-new-report-info">If this is incorrect, please <a href="#" class="game-new-report-link">report it</a>.</p>
+  <% end %>
+</header>
+<footer class="home">
+  <%= @title %> is a project by <a href="http://jackhughesweb.com">Jack Hughes</a> for <a href="http://festivalofco.de">YRS Festival of Code 2014</a>
+</footer>
+
+<div class="lightbox-modal-game-report">
+  <div class="lightbox-modal-game-report-text">
+    <p><a href="#" class="game-new-report-back">Back</a></p>
+    <h2>Report a location search</h2>
+    <p>Location:</p>
+    <p><input id="game-report-location" placeholder="Location" disabled="disabled"></input></p>
+    <p>Radius:</p>
+    <p><input id="game-report-radius" placeholder="Radius" disabled="disabled"></input></p>
+    <p>Message (optional - include suggestions for local attractions):</p>
+    <p><textarea id="game-report-message" placeholder="Message (optional)"></textarea></p>
+    <p>Name (optional - fill in if you would like a reply when I fix the issue):</p>
+    <p><input id="game-report-name" placeholder="Name (optional)"></input></p>
+    <p>Email (optional - fill in if you would like a reply when I fix the issue):</p>
+    <p><input id="game-report-email" placeholder="Email (optional)"></input></p>
+    <p><button type="button" id="game-report-submit" class="button">Submit</button></p>
+  </div>
+</div>
+
+<div class="lightbox-modal-game-report-done">
+  <div class="lightbox-modal-game-report-done-text">
+    <h2>Report sent!</h2>
+    <p>Sorry for your issue</p>
+    <p>Why not check out somewhere like Birmingham instead?</p>
+    <p><a href="#" class="game-new-report-back button">Done</a></p>
+  </div>
+</div>

@@ -3,15 +3,17 @@ $(document).ready(function() {
 
     var gameData;
     var markers = [];
+    var markersGuess = [];
     var currentScore = 0;
     var currentLevel = 1;
     var guessLatLng;
     var map;
+    var mapGuess;
 
     function initialize() {
 
-      var curLat = 52.4805801;
-      var curLng = -1.8927344;
+      var curLat = 0;
+      var curLng = 0;
 
       var mapStyle = [{
         "featureType": "poi", 
@@ -20,7 +22,7 @@ $(document).ready(function() {
 
       var mapOptions = {
         center: new google.maps.LatLng(curLat, curLng),
-        zoom: 13,
+        zoom: 1,
         disableDefaultUI: true
       };
 
@@ -28,6 +30,11 @@ $(document).ready(function() {
           mapOptions);
 
       map.setOptions({styles: mapStyle});
+
+      mapGuess = new google.maps.Map(document.getElementById("map-canvas-guess"),
+          mapOptions);
+
+      mapGuess.setOptions({styles: mapStyle});
 
       google.maps.event.addListener(map, 'click', function(event) {
         for (var i = 0; i < markers.length; i++) {
@@ -55,6 +62,14 @@ $(document).ready(function() {
         var myLatLng = new google.maps.LatLng(newLat, newLong);
         map.setCenter(myLatLng);
       }
+
+      $.get(window.location.pathname + '.json', function(data){
+        gameData = data;
+        resetMap();
+        updateClues(gameData.locations[0]);
+        $('.not-loading').show();
+        $('.loading').hide();         
+      });
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
@@ -122,10 +137,10 @@ $(document).ready(function() {
       var correctLatLng = new google.maps.LatLng(gameData.locations[currentLevel - 1].latitude, gameData.locations[currentLevel - 1].longitude);
       var miledistance = correctLatLng.distanceFrom(guessLatLng, 3959).toFixed(1);
       $('.modal-miles').text(miledistance);
-      $('.modal-points').text(getScoreFromMiles(miledistance, 4));
+      $('.modal-points').text(getScoreFromMiles(miledistance, gameData.radius));
       $('.modal-clue-points').text(getCluePoints());
-      $('.modal-level-points').text(getScoreFromMiles(miledistance, 4) - getCluePoints());
-      currentScore += getScoreFromMiles(miledistance, 4);
+      $('.modal-level-points').text(getScoreFromMiles(miledistance, gameData.radius) - getCluePoints());
+      currentScore += getScoreFromMiles(miledistance, gameData.radius);
       currentScore -= getCluePoints();
       updateScreen();
       $('.modal-current-score').text(currentScore);
@@ -133,6 +148,31 @@ $(document).ready(function() {
         $('.modal-next-level').html('Next &rarr;');
       }
       $('.lightbox-modal').show();
+      google.maps.event.trigger(mapGuess, "resize");
+      for (var i = 0; i < markersGuess.length; i++) {
+        markersGuess[i].setMap(null);
+      }
+      markersGuess = [];
+      var markerGuess1 = new google.maps.Marker({
+          position: guessLatLng,
+          map: mapGuess
+      });
+      markersGuess.push(markerGuess1);
+      var circ = new google.maps.Circle();
+      circ.setRadius(miledistance * 1609.0);
+      circ.setCenter(guessLatLng);
+      mapGuess.fitBounds(circ.getBounds());
+      mapGuess.setCenter(guessLatLng);
+      var mapPath = new google.maps.Polyline({
+        path: [guessLatLng, correctLatLng],
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+      });
+      markersGuess.push(mapPath);
+      mapPath.setMap(mapGuess);
+
     });
 
     $('.modal-info-start').on('click', function() {
@@ -143,10 +183,20 @@ $(document).ready(function() {
       if (currentLevel == 4) {
         $('.modal-end-final-score').text(currentScore);
         loadAward();
-        $('.location-data-1').html('<a href="' + gameData.locations[0].clue_wikipedia_link + '">' + gameData.locations[0].name + '</a>');
-        $('.location-data-2').html('<a href="' + gameData.locations[1].clue_wikipedia_link + '">' + gameData.locations[1].name + '</a>');
-        $('.location-data-3').html('<a href="' + gameData.locations[2].clue_wikipedia_link + '">' + gameData.locations[2].name + '</a>');
-        $('.location-data-4').html('<a href="' + gameData.locations[3].clue_wikipedia_link + '">' + gameData.locations[3].name + '</a>');
+
+        for (var i = 4; i >= 1; i--) {
+          var location = gameData.locations[i - 1];
+          $('.location-data-' + i).children('h2.name').text(location.name);
+          $('.location-data-' + i).children('div.location-container').children('p').children('img.image').attr('src', location.flickr_url);
+          $('.location-data-' + i).children('div.location-container').children('p').children('a.image-link').attr('href', location.flickr_page);
+          $('.location-data-' + i).children('div.location-container').children('div.text').text(location.clue_wikipedia_text.replace(/\[(T|t)he location\]/g, location.name));
+          $('.location-data-' + i).children('div.location-container').children('div.text').append(" <a href='" + location.clue_wikipedia_link + "'>More on Wikipedia...</a>");
+          $('.location-data-' + i).children('h2.name').on('click', function() {
+            $(this).parent().children('div.location-container').slideToggle();
+          });
+          $('.location-data-' + i).children('div.location-container').hide();
+        };
+
         $('.twitter-score').attr('href', 'https://twitter.com/intent/tweet?related=jackhughesweb&text=I%20just%20scored%20' + currentScore + '%20on%20ExploreLocal!%20Beat%20my%20score%20at%20' + window.location.href + '%20%23explorelocal&original_referer=URL#tweet-intent');
         $('.lightbox-modal-end').show();
         $('.lightbox-modal').hide();
@@ -164,8 +214,7 @@ $(document).ready(function() {
           markers[i].setMap(null);
         }
         markers = [];
-        map.setZoom(13);
-        map.setCenter(new google.maps.LatLng(52.4805801, -1.8927344));
+        resetMap();
         updateScreen();
         $('.lightbox-modal').hide();
       }
@@ -214,13 +263,15 @@ $(document).ready(function() {
       $('.level-current').text(currentLevel);
     }
 
-    updateScreen();
+    function resetMap() {
+      var circ = new google.maps.Circle();
+      var latlng = new google.maps.LatLng(gameData.latitude, gameData.longitude);
+      circ.setRadius(gameData.radius * 1609.0);
+      circ.setCenter(latlng);
+      map.setCenter(latlng);
+      map.fitBounds(circ.getBounds());
+    }
 
-    $.get(window.location.pathname + '.json', function(data){
-      gameData = data;
-      updateClues(gameData.locations[0]);
-      $('.not-loading').show();
-      $('.loading').hide();         
-    });
+    updateScreen();
   }
 });
