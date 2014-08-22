@@ -36,14 +36,56 @@ $(document).ready(function() {
       if (!data.message) {
         $('#game-start').text('Not enough locations found');
         $('#game-start').prop('disabled', true);
+        $('.game-new-report-info').show();
       } else {
         $('#game-start').text('Start game');
         $('#game-start').prop('disabled', false);
+        $('.game-new-report-info').hide();
       }
     });
   }
 
   $('input.game-new-form').on('change', function() {
     checkGame();
+  });
+
+  $('.game-new-report-link').on('click', function(event) {
+    $('#game-report-location').val($('#game_new_location').val());
+    $('#game-report-radius').val($('#game_new_radius').val());
+    $('#game-report-submit').text('Submit');
+    $('#game-report-submit').prop('disabled', false);
+    $('.lightbox-modal-game-report').show();
+    event.preventDefault();
+  });
+
+  $('.game-new-report-back').on('click', function(event) {
+    $('.lightbox-modal-game-report').hide();
+    $('.lightbox-modal-game-report-done').hide();
+    event.preventDefault();
+  });
+
+  $('#game-report-submit').on('click', function() {
+    $('#game-report-submit').text('Sending report...');
+    $('#game-report-submit').prop('disabled', true);
+    $.ajax({
+      url: '/games/report',
+      type: 'post',
+      data: {
+        "game_report_location": $('#game-report-location').val(),
+        "game_report_radius": $('#game-report-radius').val(),
+        "game_report_message": $('#game-report-message').val(),
+        "game_report_name": $('#game-report-name').val(),
+        "game_report_email": $('#game-report-email').val(),
+      },
+      success: function(result) {
+        $('#game-report-submit').text('Sent');
+        $('.lightbox-modal-game-report').hide();
+        $('.lightbox-modal-game-report-done').show();
+      },
+      error: function(result) {
+        $('#game-report-submit').text('Error - click to retry');
+        $('#game-report-submit').prop('disabled', false);
+      }
+    });
   });
 });

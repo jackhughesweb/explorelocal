@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @game_report.location %>
+</p>
+
+<p>
+  <strong>Radius:</strong>
+  <%= @game_report.radius %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @game_report.message %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @game_report.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @game_report.email %>
+</p>
+
+<%= link_to 'Edit', edit_game_report_path(@game_report) %> |
+<%= link_to 'Back', game_reports_path %>

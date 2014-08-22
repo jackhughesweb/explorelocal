@@ -1,4 +1,7 @@
 Yrsproject::Application.routes.draw do
+  post 'games/report' => 'game_reports#report'
+  resources :game_reports
+
   get 'games/check_game' => 'games#check_game'
   resources :games
 
