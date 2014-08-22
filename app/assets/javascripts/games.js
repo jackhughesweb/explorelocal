@@ -183,10 +183,20 @@ $(document).ready(function() {
       if (currentLevel == 4) {
         $('.modal-end-final-score').text(currentScore);
         loadAward();
-        $('.location-data-1').html('<a href="' + gameData.locations[0].clue_wikipedia_link + '">' + gameData.locations[0].name + '</a> (<a href="' + gameData.locations[0].flickr_page + '">Flickr photo</a>)');
-        $('.location-data-2').html('<a href="' + gameData.locations[1].clue_wikipedia_link + '">' + gameData.locations[1].name + '</a> (<a href="' + gameData.locations[1].flickr_page + '">Flickr photo</a>)');
-        $('.location-data-3').html('<a href="' + gameData.locations[2].clue_wikipedia_link + '">' + gameData.locations[2].name + '</a> (<a href="' + gameData.locations[2].flickr_page + '">Flickr photo</a>)');
-        $('.location-data-4').html('<a href="' + gameData.locations[3].clue_wikipedia_link + '">' + gameData.locations[3].name + '</a> (<a href="' + gameData.locations[3].flickr_page + '">Flickr photo</a>)');
+
+        for (var i = 4; i >= 1; i--) {
+          var location = gameData.locations[i - 1];
+          $('.location-data-' + i).children('h2.name').text(location.name);
+          $('.location-data-' + i).children('div.location-container').children('p').children('img.image').attr('src', location.flickr_url);
+          $('.location-data-' + i).children('div.location-container').children('p').children('a.image-link').attr('href', location.flickr_page);
+          $('.location-data-' + i).children('div.location-container').children('div.text').text(location.clue_wikipedia_text.replace(/\[(T|t)he location\]/g, location.name));
+          $('.location-data-' + i).children('div.location-container').children('div.text').append(" <a href='" + location.clue_wikipedia_link + "'>More on Wikipedia...</a>");
+          $('.location-data-' + i).children('h2.name').on('click', function() {
+            $(this).parent().children('div.location-container').slideToggle();
+          });
+          $('.location-data-' + i).children('div.location-container').hide();
+        };
+
         $('.twitter-score').attr('href', 'https://twitter.com/intent/tweet?related=jackhughesweb&text=I%20just%20scored%20' + currentScore + '%20on%20ExploreLocal!%20Beat%20my%20score%20at%20' + window.location.href + '%20%23explorelocal&original_referer=URL#tweet-intent');
         $('.lightbox-modal-end').show();
         $('.lightbox-modal').hide();

@@ -81,12 +81,40 @@
     <p>Your final score is <b><span class="modal-end-final-score"></span></b> out of 4000.</p>
     <p class="award-info"></p>
     <p>Challenge your friends with these places by <a href="" class="twitter-score" target="_blank">sharing on Twitter</a> or sending them the URL <%= request.original_url %></p>
-    <p>Locations in this game were:
-      <ol>
-        <li class="location-data-1"></li>
-        <li class="location-data-2"></li>
-        <li class="location-data-3"></li>
-        <li class="location-data-4"></li>
+    <p>Locations in this game were (click on each for more information):
+      <ol class="game-location-cards">
+        <li class="location-data-1">
+          <h2 class="name"></h2>
+          <div class="location-container">
+            <p><img src="" class="image"></p>
+            <p><a href="" class="image-link">Photo from Flickr</a></p>
+            <div class="text"></div>
+          </div>
+        </li>
+        <li class="location-data-2">
+          <h2 class="name"></h2>
+          <div class="location-container">
+            <p><img src="" class="image"></p>
+            <p><a href="" class="image-link">Photo from Flickr</a></p>
+            <div class="text"></div>
+          </div>
+        </li>
+        <li class="location-data-3">
+          <h2 class="name"></h2>
+          <div class="location-container">
+            <p><img src="" class="image"></p>
+            <p><a href="" class="image-link">Photo from Flickr</a></p>
+            <div class="text"></div>
+          </div>
+        </li>
+        <li class="location-data-4">
+          <h2 class="name"></h2>
+          <div class="location-container">
+            <p><img src="" class="image"></p>
+            <p><a href="" class="image-link">Photo from Flickr</a></p>
+            <div class="text"></div>
+          </div>
+        </li>
       </ol>
     </p>
     <p><a href="<%= new_game_path %>" class="button">New Game</a> <a href="<%= request.original_url %>" class="button">Replay Game</a> <a href="/" class="button">Home</a></p>
