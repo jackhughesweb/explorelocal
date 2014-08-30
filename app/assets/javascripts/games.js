@@ -68,7 +68,8 @@ $(document).ready(function() {
         resetMap();
         updateClues(gameData.locations[0]);
         $('.not-loading').show();
-        $('.loading').hide();         
+        $('.loading').hide();
+        gaLog('game', 'start', gameData.slug);         
       });
     }
 
@@ -200,6 +201,7 @@ $(document).ready(function() {
         $('.twitter-score').attr('href', 'https://twitter.com/intent/tweet?related=jackhughesweb&text=I%20just%20scored%20' + currentScore + '%20on%20ExploreLocal!%20Beat%20my%20score%20at%20' + window.location.href + '%20%23explorelocal&original_referer=URL#tweet-intent');
         $('.lightbox-modal-end').show();
         $('.lightbox-modal').hide();
+        gaLog('game', 'complete', gameData.slug);
       } else {
         currentLevel += 1;
         $('.clue.card').children('.hidden').hide();

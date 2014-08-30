@@ -78,11 +78,13 @@ $(document).ready(function() {
         "game_report_email": $('#game-report-email').val()
       },
       success: function(result) {
+        gaLog('search_report', 'send', 'success');
         $('#game-report-submit').text('Sent');
         $('.lightbox-modal-game-report').hide();
         $('.lightbox-modal-game-report-done').show();
       },
       error: function(result) {
+        gaLog('search_report', 'send', 'error');
         $('#game-report-submit').text('Error - click to retry');
         $('#game-report-submit').prop('disabled', false);
       }
