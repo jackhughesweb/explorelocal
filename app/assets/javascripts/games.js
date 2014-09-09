@@ -69,6 +69,10 @@ $(document).ready(function() {
         updateClues(gameData.locations[0]);
         $('.not-loading').show();
         $('.loading').hide();
+        $('.image-game-preload-1').attr('src', gameData.locations[0].flickr_url);
+        $('.image-game-preload-2').attr('src', gameData.locations[1].flickr_url);
+        $('.image-game-preload-3').attr('src', gameData.locations[2].flickr_url);
+        $('.image-game-preload-4').attr('src', gameData.locations[3].flickr_url);
         gaLog('game', 'start', gameData.slug);         
       });
     }

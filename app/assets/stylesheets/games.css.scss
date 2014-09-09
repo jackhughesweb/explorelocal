@@ -181,3 +181,13 @@ ol.game-location-cards {
 .award {
   display: none;
 }
+
+.image-game-preloader {
+  opacity: 0;
+  &, & * {
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
