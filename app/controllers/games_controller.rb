@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate, only: [:index, :edit, :update, :destroy]
+  before_filter :check_game_valid, only: [:create, :check_game]
 
   # GET /games
   # GET /games.json
@@ -46,7 +47,7 @@ class GamesController < ApplicationController
 
   # POST /games
   def create   
-    if (Location.near(params[:game_new_location], params[:game_new_radius]).count(:all) > 3)
+    if (@locations_nearby_count > 3)
       @locations = Location.near(params[:game_new_location], params[:game_new_radius])
 
       @game = Game.new
@@ -81,7 +82,7 @@ class GamesController < ApplicationController
   end
 
   def check_game
-    if (Location.near(params[:game_new_location], params[:game_new_radius]).count(:all) > 3)
+    if (@locations_nearby_count > 3)
       @message = true
     else 
       @message = false
@@ -132,5 +133,10 @@ class GamesController < ApplicationController
       authenticate_or_request_with_http_basic do |username, password|
         username == ENV["EL_USERNAME"] && password == ENV["EL_PASSWORD"]
       end
+    end
+
+    def check_game_valid
+      locations_nearby = Location.near(params[:game_new_location], params[:game_new_radius])
+      @locations_nearby_count = locations_nearby.count(:all)
     end
 end
