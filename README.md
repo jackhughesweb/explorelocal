@@ -5,4 +5,4 @@ ExploreLocal is a game for discovering and identifying nearby places of interest
 
 To setup ExploreLocal in a development environment, you will need to set the `El_SECRET`, `EL_FLICKR`, `EL_FLICKR_SECRET` environment variables to `rake secret`, a Flickr API key and Flickr API secret respectively. Also, please change the Google Analytics ID and Google Maps JS API key to your own.
 
-The game was created for the Young Rewired State Festival of Code 2014. My last commit during the festival was 848057ce7d19456c94aa4f2544f7f33e7bd8b466.
+The game was created for the Young Rewired State Festival of Code 2014. My last commit during the festival was [848057c](848057ce7d19456c94aa4f2544f7f33e7bd8b466).
