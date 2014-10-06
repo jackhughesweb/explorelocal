@@ -1,10 +1,13 @@
 language: ruby
 rvm:
-  - "2.1.2"
-
-script: 
-  - mv config/database.example.yml config/database.yml
-  - env EL_SECRET=$(bundle exec rake secret)
-  - RAILS_ENV=test bundle exec rake db:migrate --trace
-  - bundle exec rake db:test:prepare
-  - bundle exec rspec
+- 2.1.2
+script:
+- mv config/database.example.yml config/database.yml
+- env EL_SECRET=$(bundle exec rake secret)
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec
+env:
+  global:
+  - secure: DD9Oij/j9F3dXJzdDw3zr1HNpZlo7Mk5nkbCVlhz5+BV/hKNg48gn4QuC3XGtF7OOk84SBkUM7a3MmInJs6r3VLB+WpyNRhldEwkZKQwqUEzoGxZnehAnEvljPQCH6owcRcbguP42BKMXfgwL3Tgx7g5yGHKPwaRobDGvrrCiUo=
+  - secure: cUAPX/FGuVZVv7c/l7nx2JbjEdsMPIbBhuuug2WuV5BmApcU+BAfIctcoXHsPnoxKq1DxhpGlaAcL6AW8qR7Os0noYBdZ+sowkcFbn9JINW2qLZUQEd0HgyYmhKbBRI9WnsJXPCvOb621Nep521aZqxTAy9FZ81Fd/weex9yelw=
