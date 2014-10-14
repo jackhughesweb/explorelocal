@@ -1,3 +1,4 @@
+/*global google */
 $(document).ready(function() {
   if ($('body.game-js').length !== 0) {
 
