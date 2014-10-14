@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  if ($('body.game-js').length != 0) {
+  if ($('body.game-js').length !== 0) {
 
     var gameData;
     var markers = [];
@@ -149,7 +149,7 @@ $(document).ready(function() {
       currentScore -= getCluePoints();
       updateScreen();
       $('.modal-current-score').text(currentScore);
-      if (currentLevel == 4) {
+      if (currentLevel === 4) {
         $('.modal-next-level').html('Next &rarr;');
       }
       $('.lightbox-modal').show();
@@ -185,7 +185,7 @@ $(document).ready(function() {
     });
 
     $('.modal-next-level').on('click', function() {
-      if (currentLevel == 4) {
+      if (currentLevel === 4) {
         $('.modal-end-final-score').text(currentScore);
         loadAward();
 
@@ -255,10 +255,10 @@ $(document).ready(function() {
 
     function getCluePoints() {
       var returnVal = 0;
-      if ($('.wiki-clue.clickable').length == 0) {
+      if ($('.wiki-clue.clickable').length === 0) {
         returnVal += 50;
       }
-      if ($('.name-clue.clickable').length == 0) {
+      if ($('.name-clue.clickable').length === 0) {
         returnVal += 100;
       }
       return returnVal;
