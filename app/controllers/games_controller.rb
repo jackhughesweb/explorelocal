@@ -1,3 +1,4 @@
+# Controller to manage game creation and plays
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate, only: [:index, :edit, :update, :destroy]
@@ -81,6 +82,8 @@ class GamesController < ApplicationController
     end
   end
 
+  # GET /games/1/edit
+  # Used before creating a new game to check if the new game would be valid
   def check_game
     if (@locations_nearby_count > 3)
       @message = true
