@@ -10,6 +10,7 @@ $(document).ready(function() {
     var guessLatLng;
     var map;
     var mapGuess;
+    var levelScore = [];
 
     function initialize() {
 
@@ -146,6 +147,9 @@ $(document).ready(function() {
       $('.modal-points').text(getScoreFromMiles(miledistance, gameData.radius));
       $('.modal-clue-points').text(getCluePoints());
       $('.modal-level-points').text(getScoreFromMiles(miledistance, gameData.radius) - getCluePoints());
+        
+      levelScore[currentLevel] = getScoreFromMiles(miledistance, gameData.radius) - getCluePoints()
+
       currentScore += getScoreFromMiles(miledistance, gameData.radius);
       currentScore -= getCluePoints();
       updateScreen();
@@ -192,7 +196,7 @@ $(document).ready(function() {
 
         for (var i = 4; i >= 1; i--) {
           var location = gameData.locations[i - 1];
-          $('.location-data-' + i).children('h2.name').text(location.name);
+          $('.location-data-' + i).children('h2.name').html(location.name + ' <span>' + levelScore[i] + '/1000</span>');
           $('.location-data-' + i).children('div.location-container').children('p').children('img.image').attr('src', location.flickr_url);
           $('.location-data-' + i).children('div.location-container').children('p').children('a.image-link').attr('href', location.flickr_page);
           $('.location-data-' + i).children('div.location-container').children('div.text').text(location.clue_wikipedia_text.replace(/\[(T|t)he location\]/g, location.name));
