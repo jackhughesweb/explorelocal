@@ -48,6 +48,8 @@ class LocationsController < ApplicationController
     @search = flickr.photos.search(:text => params[:search], :license => '1,2,3,4,5,6,7', :sort => 'relevance', :per_page => 10, :page => @page)
   end
 
+  # GET /locations/wikisearch.json
+  # Used to get Wikipedia articles when creating a new location
   def wikisearch
     # url = HTTParty.get("https://en.wikipedia.org/w/api.php",
     #     :headers => { 'ContentType' => 'application/json' }, :query => {:action => 'opensearch', :search => params[:search], :limit => 5, :namespace => 0, :format => 'json'} )
@@ -60,6 +62,8 @@ class LocationsController < ApplicationController
     @articles = response["query"]["search"]
   end
 
+  # GET /locations/wikitext.json
+  # Used to get a Wikipedia article's text when creating a new location
   def wikitext
     url = HTTParty.get("https://en.wikipedia.org/w/api.php",
         :headers => { 'ContentType' => 'application/json' }, :query => {:action => 'query', :titles => params[:search], :prop => 'extracts|info', :inprop => 'url', :format => 'json'} )
