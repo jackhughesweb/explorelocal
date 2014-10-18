@@ -1,3 +1,4 @@
+# Controller to manage game reports
 class GameReportsController < ApplicationController
   before_action :set_game_report, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate, only: [:index, :show, :new, :edit, :create, :update, :destroy]
