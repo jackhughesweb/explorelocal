@@ -1,3 +1,4 @@
+# Controller to manage locations
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate
