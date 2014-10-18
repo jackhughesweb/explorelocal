@@ -6,6 +6,7 @@ class Location < ActiveRecord::Base
   # Accessed by calling Location.search
   # Returns a Location hash of locations matching the name
   # Used for checking for duplicate locations
+  # Location.search("Cadbury World") => <Location name:"Cadbury World">
   def self.search(search)
     if search
       self.where("name like ?", "%" + search + "%")
