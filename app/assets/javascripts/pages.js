@@ -42,6 +42,10 @@ $(document).ready(function() {
         $('#game-start').prop('disabled', false);
         $('.game-new-report-info').hide();
       }
+    }).fail(function() {
+      $('#game-start').text('Could not connect to server');
+      $('#game-start').prop('disabled', true);
+      $('.game-new-report-info').hide();
     });
   }
 
