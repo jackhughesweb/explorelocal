@@ -4,8 +4,6 @@ rvm:
 script:
 - mv config/database.example.yml config/database.yml
 - env EL_SECRET=$(bundle exec rake secret)
-- env EL_USERNAME=admin
-- env EL_PASSWORD=admin
 - RAILS_ENV=test bundle exec rake db:migrate --trace
 - bundle exec rake db:test:prepare
 - bundle exec rspec
@@ -13,3 +11,5 @@ env:
   global:
   - secure: DD9Oij/j9F3dXJzdDw3zr1HNpZlo7Mk5nkbCVlhz5+BV/hKNg48gn4QuC3XGtF7OOk84SBkUM7a3MmInJs6r3VLB+WpyNRhldEwkZKQwqUEzoGxZnehAnEvljPQCH6owcRcbguP42BKMXfgwL3Tgx7g5yGHKPwaRobDGvrrCiUo=
   - secure: cUAPX/FGuVZVv7c/l7nx2JbjEdsMPIbBhuuug2WuV5BmApcU+BAfIctcoXHsPnoxKq1DxhpGlaAcL6AW8qR7Os0noYBdZ+sowkcFbn9JINW2qLZUQEd0HgyYmhKbBRI9WnsJXPCvOb621Nep521aZqxTAy9FZ81Fd/weex9yelw=
+  - secure: TD6SeTcrr4cu1LOlfxbVNUXB5bcAqIjkdVJFmpOxy1aHxDub++VCuTSDHYhhzOI0JK/9D2BYEBFPhZAXd/CWjT1HWG6hYl34yiwVTgNST0LhUPJAgeFhK0AUrvofIyjmJh9aaz6tL8Jj70RTm8FCDCsGGA/WN6VauVwDSLNYYNY=
+  - secure: I8jt3shwiBOn9Yena835u+e+1phEWPNtyBgOKQ5iFjnA9yDCFCSnz48kypfhUC0rbanpWD79Qz/XsQFg0ypfvrumcsqggM5DOULXKXfhTz9DxLThmtBAGyzf7hDCw3iw1VIJNOwsvrmNQjzCwUYXhw5t+KsuuueJsJrzai0knE0=
