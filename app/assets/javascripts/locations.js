@@ -76,6 +76,34 @@ $(document).ready(function() {
       }
     }
 
+    $('#getdata-near').on('click', function (event) {
+      service.textSearch({
+        query: $('#query_near_field').val()
+      }, function (results, status) {
+        $('#query_near_field').val(results[0].formatted_address);
+        service.nearbySearch({
+          location: results[0].geometry.location,
+          radius: 8046,
+          types: ['airport', 'amusement_park', 'aquarium', 'art_gallery', 'church', 'city_hall', 'hospital', 'library', 'movie_theater', 'museum', 'park', 'shopping_mall', 'stadium', 'train_station', 'zoo']
+        }, function (results, status) {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+            var resultsLength = results.length;
+            if (results.length > 5) {
+              var resultsLength = 5;
+            }
+            $('.location-near-list').html('');
+            for (var i = 0; i < resultsLength; i++) {
+              $('.location-near-list').append('<li>' + results[i].name + '</li>');
+            };
+            $('.location-near-list').children('li').on('click', function () {
+              $('#query_field').val($(this).text());
+            });
+          }
+        });
+      });
+      
+    });
+
     $('#getdata').on('click', function (event) {
       if (searched) {
         var confirmation1 = confirm('New searches will reset the form. Are you sure you want to continue?');
