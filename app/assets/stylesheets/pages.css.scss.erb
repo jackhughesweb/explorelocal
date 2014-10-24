@@ -88,6 +88,20 @@ header.home {
     & > *:last-child {
       border-radius: 0 0.4em 0.4em 0;
     }
+    @media screen and (max-width: 61em) {
+      & > *:first-child {
+        border-radius: 0.4em 0.4em 0 0 !important;
+      }
+
+      & > *:last-child {
+        border-radius: 0 0 0.4em 0.4em !important;
+      }
+
+      * {
+        width: 100%;
+        text-align: center;
+      }
+    } 
     input {
       margin: 0;
     }
@@ -171,6 +185,23 @@ footer.home {
       -webkit-appearance: none;
       appearance: none;
       border: 2px solid #188520;
+    }
+  }
+  @media screen and (max-width: 65em) {
+    .lightbox-modal-game-report-text, .lightbox-modal-game-report-done-text {
+      width: 60% !important;
+    }
+  }
+
+  @media screen and (max-width: 44em) {
+    .lightbox-modal-game-report-text, .lightbox-modal-game-report-done-text {
+      width: 80% !important;
+    }
+  }
+
+  @media screen and (max-width: 32em) {
+    .lightbox-modal-game-report-text, .lightbox-modal-game-report-done-text {
+      width: 100% !important;
     }
   }
 }
