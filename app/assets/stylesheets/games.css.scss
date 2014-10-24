@@ -153,6 +153,24 @@ section.not-loading {
   overflow: scroll;
 }
 
+@media screen and (max-width: 65em) {
+  .lightbox-modal-text, .lightbox-modal-end-text, .lightbox-modal-info-text {
+    width: 60% !important;
+  }
+}
+
+@media screen and (max-width: 44em) {
+  .lightbox-modal-text, .lightbox-modal-end-text, .lightbox-modal-info-text {
+    width: 80% !important;
+  }
+}
+
+@media screen and (max-width: 32em) {
+  .lightbox-modal-text, .lightbox-modal-end-text, .lightbox-modal-info-text {
+    width: 100% !important;
+  }
+}
+
 ol.game-location-cards {
   list-style: none;
   padding: 0;
