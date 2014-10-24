@@ -81,7 +81,7 @@ class LocationsController < ApplicationController
       @htmltext << para.content
       @htmltext << ' '
     end
-    @text = sanitize(@htmltext, :tags=>[]).gsub(/[t]he #{params[:search]}/, '[the location]').gsub(/[T]he #{params[:search]}/, '[The location]').gsub(/\. #{params[:search]}/, '. [The location]').gsub(/^#{params[:search]}/, '[The location]').gsub(/#{params[:search]}/, '[the location]').truncate(1000, separator: '.', omission: '.')
+    @text = sanitize(@htmltext, :tags=>[]).sub(/^.*?(?= is)/, '[The location]').gsub(/[t]he #{params[:search]}/, '[the location]').gsub(/[T]he #{params[:search]}/, '[The location]').gsub(/\. #{params[:search]}/, '. [The location]').gsub(/^#{params[:search]}/, '[The location]').gsub(/#{params[:search]}/, '[the location]').truncate(1000, separator: '.', omission: '.')
   end
 
   # GET /locations/1/edit
