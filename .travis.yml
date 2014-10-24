@@ -4,11 +4,11 @@ rvm:
 script:
 - mv config/database.example.yml config/database.yml
 - env EL_SECRET=$(bundle exec rake secret)
+- env EL_USERNAME=admin
+- env EL_PASSWORD=admin
 - RAILS_ENV=test bundle exec rake db:migrate --trace
 - bundle exec rake db:test:prepare
 - bundle exec rspec
-- env EL_USERNAME=admin
-- env EL_PASSWORD=admin
 env:
   global:
   - secure: DD9Oij/j9F3dXJzdDw3zr1HNpZlo7Mk5nkbCVlhz5+BV/hKNg48gn4QuC3XGtF7OOk84SBkUM7a3MmInJs6r3VLB+WpyNRhldEwkZKQwqUEzoGxZnehAnEvljPQCH6owcRcbguP42BKMXfgwL3Tgx7g5yGHKPwaRobDGvrrCiUo=
