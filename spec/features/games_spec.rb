@@ -29,5 +29,7 @@ describe "games" do
 
     visit "/games/#{game.slug}.json"
     expect(page).to have_http_status(:success)
+
+    expect(JSON.parse(page.body)['id']).to eq(game.id)
   end
 end
